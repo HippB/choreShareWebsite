@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chore Share - Join Group</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Create a Group</h1>
+    <form method="POST" action="{{ url_for('create_group') }}">
+      <label for="group_id">Create Group ID:</label>
+      <input type="text" name="group_id" id="group_id" required>
+	  <label for="password">Create Password:</label>
+      <input type="text" name="password" id="group_id" required>
+      <br>
+      <input type="submit" value="Create Group">
+    </form>
+  </body>
+</html>
