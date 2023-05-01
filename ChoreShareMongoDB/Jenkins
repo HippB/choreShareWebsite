@@ -10,13 +10,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'your-test-command-here'
+                sh 'pytest'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'your-deploy-command-here'
+                sh 'python app.py'
             }
         }
     }
