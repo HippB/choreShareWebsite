@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && python app.py'
+                sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && start /b python app.py'
             }
             post {
                 always {
