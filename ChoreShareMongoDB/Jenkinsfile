@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    
-    tools {
-        python '3.11' // specify the Python version to use
-    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -13,10 +10,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && -m pytest'
+                sh '''
+                    cd ChoreShareMongoDB
+                    pip install -r requirements.txt
+                    python -m pytest
+                '''
             }
         }
-
         stage('Deploy') {
             steps {
                 sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && python app.py'
