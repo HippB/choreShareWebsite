@@ -1,23 +1,29 @@
 pipeline {
     agent any
-    options {
-        skipDefaultCheckout true
-    }
+
     stages {
-        stage('Delete workspace') {
-            steps {
-                deleteDir()
-            }
-        }
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        stage('Build') {
+
+        stage('Test') {
             steps {
-                sh 'python app.py'
+                sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && pytest'
             }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && python app.py'
+            }
+        }
+    }
+
+    post {
+        always {
+            deleteDir()
         }
     }
 }
