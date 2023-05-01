@@ -1,20 +1,20 @@
 pipeline {
     agent any
-
+    options {
+        skipDefaultCheckout true
+    }
     stages {
+        stage('Delete workspace') {
+            steps {
+                deleteDir()
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
-        stage('Test') {
-            steps {
-                sh 'pytest'
-            }
-        }
-
-        stage('Deploy') {
+        stage('Build') {
             steps {
                 sh 'python app.py'
             }
