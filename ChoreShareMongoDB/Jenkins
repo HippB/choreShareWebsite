@@ -18,6 +18,11 @@ pipeline {
             steps {
                 sh 'cd ChoreShareMongoDB && pip install -r requirements.txt && python app.py'
             }
+            post {
+                always {
+                    archiveArtifacts 'ChoreShareMongoDB/*.py'
+                }
+            }
         }
     }
 
